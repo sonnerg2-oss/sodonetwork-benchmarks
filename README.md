@@ -1,6 +1,7 @@
 # SodoNetwork Benchmarks — Reproducible Mutation Guard Evaluation
 
 [![PyPI version](https://img.shields.io/pypi/v/sodonetwork.svg)](https://pypi.org/project/sodonetwork/)
+[![Reproducible Benchmark CI](https://github.com/sonnerg2-oss/sodonetwork-benchmarks/actions/workflows/benchmark.yml/badge.svg)](https://github.com/sonnerg2-oss/sodonetwork-benchmarks/actions/workflows/benchmark.yml)
 
 Independent, reproducible benchmark suite evaluating **`sodonetwork`** (`verify_code_mutation_integrity`) against static compiler checks (`python -m py_compile`) on real third-party Python Standard Library source files.
 
@@ -46,7 +47,7 @@ These documented failure cases serve as the exact quantitative baseline for hard
 ## Reproduce Locally in 30 Seconds
 
 ```bash
-git clone <THIS_REPO_URL>
+git clone https://github.com/sonnerg2-oss/sodonetwork-benchmarks.git
 cd sodonetwork-benchmarks
 pip install sodonetwork==3.6.1
 python benchmarks/run_benchmark.py
