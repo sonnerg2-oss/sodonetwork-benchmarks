@@ -1,6 +1,6 @@
 {
-  "timestamp_utc": "2026-11-17T22:08:53.480588+00:00",
-  "sodonetwork_version": "3.6.1",
+  "timestamp_utc": "2026-11-17T22:28:29.063269+00:00",
+  "sodonetwork_version": "3.6.2",
   "environment": {
     "python_version": "3.9.13",
     "os": "Windows 10",
@@ -16,20 +16,20 @@
     "defects_silently_passed": 180,
     "defects_caught": 0,
     "silent_pass_rate_pct": 100.0,
-    "latency_p50_ms": 55.484,
-    "latency_p95_ms": 61.613
+    "latency_p50_ms": 57.206,
+    "latency_p95_ms": 66.045
   },
   "sodonetwork_guard": {
-    "true_positive": 120,
-    "false_negative": 60,
+    "true_positive": 180,
+    "false_negative": 0,
     "false_positive": 0,
     "true_negative": 40,
-    "recall_pct": 66.67,
+    "recall_pct": 100.0,
     "precision_pct": 100.0,
     "false_positive_rate_pct": 0.0,
-    "latency_p50_ms": 0.771,
-    "latency_p95_ms": 3.63,
-    "latency_p99_ms": 4.472
+    "latency_p50_ms": 2.041,
+    "latency_p95_ms": 11.637,
+    "latency_p99_ms": 16.348
   },
   "variant_breakdown": {
     "benign_clean_edit::append_helper": {
@@ -64,17 +64,17 @@
     },
     "lazy_truncation_no_shrink::variant_omitted_brevity": {
       "total": 20,
-      "sodo_blocked": 0,
+      "sodo_blocked": 20,
       "py_compile_passed": 20
     },
     "lazy_truncation_no_shrink::variant_methods_unchanged": {
       "total": 20,
-      "sodo_blocked": 0,
+      "sodo_blocked": 20,
       "py_compile_passed": 20
     },
     "lazy_truncation_no_shrink::variant_inline_comment": {
       "total": 20,
-      "sodo_blocked": 0,
+      "sodo_blocked": 20,
       "py_compile_passed": 20
     },
     "destructive_shrink::ast_valid_mass_delete": {

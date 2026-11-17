@@ -423,7 +423,7 @@ def main() -> int:
         "",
         "## Reproducibility",
         "```bash",
-        "pip install sodonetwork==3.6.1",
+        f"pip install sodonetwork=={summary['sodonetwork_version']}",
         "python benchmarks/run_benchmark.py",
         "```",
     ])

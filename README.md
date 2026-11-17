@@ -20,27 +20,27 @@ Most AI tooling claims rely on cherry-picked demos or self-referential metrics. 
 
 ---
 
-## Baseline Results (`sodonetwork==3.6.1` on 220 AST-Valid Cases)
+## Results Progression: `v3.6.1` Baseline → `v3.6.2` Hardened (`220` Identical AST-Valid Cases)
 
-> Full reproducible output: [`results/BENCHMARK_REPORT.md`](results/BENCHMARK_REPORT.md) | Raw JSON: [`results/latest_results.json`](results/latest_results.json) | Case-by-case CSV: [`results/latest_cases.csv`](results/latest_cases.csv)
+> Full reproducible output (`v3.6.2`): [`results/BENCHMARK_REPORT.md`](results/BENCHMARK_REPORT.md) | Raw JSON: [`results/latest_results.json`](results/latest_results.json) | Case-by-case CSV: [`results/latest_cases.csv`](results/latest_cases.csv)
 
-| Metric | Control (`py_compile` alone) | `sodonetwork==3.6.1` Guard |
-| :--- | :---: | :---: |
-| AST-Valid Defect Cases Evaluated | 180 | 180 |
-| Defects Silently Passed | **180 / 180 (100.0%)** | **60 / 180** (False Negatives) |
-| Defects Blocked (Recall / TPR) | 0 / 180 (0.0%) | **120 / 180 (66.67%)** |
-| Benign Edits Blocked (False Positives) | — | **0 / 40 (0.0% FPR)** |
-| Precision | — | **100.0%** |
-| Median Latency (`p50`) | 55.484 ms | **0.771 ms** |
-| Tail Latency (`p95`) | 61.613 ms | **3.630 ms** |
+| Metric | Control (`py_compile` alone) | `sodonetwork==3.6.1` (Baseline) | `sodonetwork==3.6.2` (Hardened) |
+| :--- | :---: | :---: | :---: |
+| AST-Valid Defect Cases Evaluated | 180 | 180 | 180 |
+| Defects Silently Passed | **180 / 180 (100.0%)** | 60 / 180 | **0 / 180** |
+| Defects Blocked (Recall / TPR) | 0 / 180 (0.0%) | 120 / 180 (66.67%) | **180 / 180 (100.0%)** |
+| Benign Edits Blocked (False Positives) | — | **0 / 40 (0.0% FPR)** | **0 / 40 (0.0% FPR)** |
+| Precision | — | 100.0% | **100.0%** |
+| Median Latency (`p50`) | 56.811 ms | 0.771 ms | **0.962 ms** |
+| Tail Latency (`p95`) | 70.171 ms | 3.630 ms | **4.505 ms** |
 
-### Empirical Gaps Uncovered in `v3.6.1`
-Running this independent benchmark immediately revealed **3 real detection blind spots** in `sodonetwork==3.6.1` when truncation does not also shrink file size by >35%:
-1. `variant_omitted_brevity` (`# ... omitted for brevity ...`) — `0/20` blocked
-2. `variant_methods_unchanged` (`# ... other helper methods remain unchanged ...`) — `0/20` blocked
-3. `variant_inline_comment` (`x = True  # rest of code unchanged`) — `0/20` blocked (only full-line comments starting with `#` were checked)
+### How Benchmark Evidence Drove `v3.6.2`
+Running the `v3.6.1` suite uncovered **3 real detection blind spots** when LLM truncation did not shrink file size by >35%:
+1. `variant_omitted_brevity` (`# ... omitted for brevity ...`) — `0/20` (`v3.6.1`) → **`20/20`** (`v3.6.2`)
+2. `variant_methods_unchanged` (`# ... other helper methods remain unchanged ...`) — `0/20` (`v3.6.1`) → **`20/20`** (`v3.6.2`)
+3. `variant_inline_comment` (`x = True  # rest of code unchanged`) — `0/20` (`v3.6.1`) → **`20/20`** (`v3.6.2`)
 
-These documented failure cases serve as the exact quantitative baseline for hardening `v3.6.2`.
+In `v3.6.2`, `verify_code_mutation_integrity` was upgraded to strip quoted string literals safely before scanning both full-line and inline trailing comments, closing all 3 gaps while keeping **False Positives at 0/40 (0.0%)** across all 20 Python stdlib modules.
 
 ---
 
@@ -49,7 +49,7 @@ These documented failure cases serve as the exact quantitative baseline for hard
 ```bash
 git clone https://github.com/sonnerg2-oss/sodonetwork-benchmarks.git
 cd sodonetwork-benchmarks
-pip install sodonetwork==3.6.1
+pip install sodonetwork==3.6.2
 python benchmarks/run_benchmark.py
 ```
 
