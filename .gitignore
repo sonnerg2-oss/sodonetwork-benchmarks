@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.sodonetwork/
+.env
+*.tmp
+chrome_tmp/
+edge_tmp/

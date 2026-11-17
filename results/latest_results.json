@@ -1,0 +1,91 @@
+{
+  "timestamp_utc": "2026-11-17T22:08:53.480588+00:00",
+  "sodonetwork_version": "3.6.1",
+  "environment": {
+    "python_version": "3.9.13",
+    "os": "Windows 10",
+    "machine": "AMD64",
+    "corpus_modules_count": 20
+  },
+  "totals": {
+    "total_cases": 220,
+    "positive_defect_cases": 180,
+    "negative_benign_cases": 40
+  },
+  "control_baseline_py_compile": {
+    "defects_silently_passed": 180,
+    "defects_caught": 0,
+    "silent_pass_rate_pct": 100.0,
+    "latency_p50_ms": 55.484,
+    "latency_p95_ms": 61.613
+  },
+  "sodonetwork_guard": {
+    "true_positive": 120,
+    "false_negative": 60,
+    "false_positive": 0,
+    "true_negative": 40,
+    "recall_pct": 66.67,
+    "precision_pct": 100.0,
+    "false_positive_rate_pct": 0.0,
+    "latency_p50_ms": 0.771,
+    "latency_p95_ms": 3.63,
+    "latency_p99_ms": 4.472
+  },
+  "variant_breakdown": {
+    "benign_clean_edit::append_helper": {
+      "total": 20,
+      "sodo_blocked": 0,
+      "py_compile_passed": 20
+    },
+    "benign_clean_edit::moderate_valid_trim_under_35pct": {
+      "total": 20,
+      "sodo_blocked": 0,
+      "py_compile_passed": 20
+    },
+    "lazy_truncation_no_shrink::known_rest_of_code": {
+      "total": 20,
+      "sodo_blocked": 20,
+      "py_compile_passed": 20
+    },
+    "lazy_truncation_no_shrink::known_existing_code": {
+      "total": 20,
+      "sodo_blocked": 20,
+      "py_compile_passed": 20
+    },
+    "lazy_truncation_no_shrink::known_remaining_unchanged": {
+      "total": 20,
+      "sodo_blocked": 20,
+      "py_compile_passed": 20
+    },
+    "lazy_truncation_no_shrink::known_impl_unchanged": {
+      "total": 20,
+      "sodo_blocked": 20,
+      "py_compile_passed": 20
+    },
+    "lazy_truncation_no_shrink::variant_omitted_brevity": {
+      "total": 20,
+      "sodo_blocked": 0,
+      "py_compile_passed": 20
+    },
+    "lazy_truncation_no_shrink::variant_methods_unchanged": {
+      "total": 20,
+      "sodo_blocked": 0,
+      "py_compile_passed": 20
+    },
+    "lazy_truncation_no_shrink::variant_inline_comment": {
+      "total": 20,
+      "sodo_blocked": 0,
+      "py_compile_passed": 20
+    },
+    "destructive_shrink::ast_valid_mass_delete": {
+      "total": 20,
+      "sodo_blocked": 20,
+      "py_compile_passed": 20
+    },
+    "empty_wipe::whitespace_only": {
+      "total": 20,
+      "sodo_blocked": 20,
+      "py_compile_passed": 20
+    }
+  }
+}
