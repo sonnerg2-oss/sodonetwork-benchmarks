@@ -26,15 +26,21 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install official PyPI package (sodonetwork==3.6.2)
-        run: python -m pip install --upgrade pip && pip install sodonetwork==3.6.2
+      - name: Install official PyPI package (sodonetwork==4.0.0)
+        run: python -m pip install --upgrade pip && pip install sodonetwork==4.0.0
 
-      - name: Execute Reproducible Stdlib Corpus Benchmark
+      - name: Execute Reproducible Stdlib Corpus Benchmark (220 Cases)
         run: python benchmarks/run_benchmark.py --out-dir results
 
-      - name: Publish Benchmark Report to GitHub Job Summary
+      - name: Execute Multi-File TX & Cross-Link Benchmark (v4.0.0)
+        run: python benchmarks/run_tx_benchmark.py --out-dir results
+
+      - name: Publish Benchmark Reports to GitHub Job Summary
         shell: bash
-        run: cat results/BENCHMARK_REPORT.md >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          cat results/BENCHMARK_REPORT.md >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          cat results/TX_BENCHMARK_REPORT.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload Raw JSON/CSV/Markdown Artifacts
         uses: actions/upload-artifact@v4
@@ -44,3 +50,5 @@ jobs:
             results/latest_results.json
             results/latest_cases.csv
             results/BENCHMARK_REPORT.md
+            results/tx_results.json
+            results/TX_BENCHMARK_REPORT.md

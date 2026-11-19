@@ -1,6 +1,6 @@
 {
-  "timestamp_utc": "2026-11-17T22:28:29.063269+00:00",
-  "sodonetwork_version": "3.6.2",
+  "timestamp_utc": "2026-11-19T20:42:03.140676+00:00",
+  "sodonetwork_version": "4.0.0",
   "environment": {
     "python_version": "3.9.13",
     "os": "Windows 10",
@@ -16,8 +16,8 @@
     "defects_silently_passed": 180,
     "defects_caught": 0,
     "silent_pass_rate_pct": 100.0,
-    "latency_p50_ms": 57.206,
-    "latency_p95_ms": 66.045
+    "latency_p50_ms": 56.951,
+    "latency_p95_ms": 64.469
   },
   "sodonetwork_guard": {
     "true_positive": 180,
@@ -27,9 +27,9 @@
     "recall_pct": 100.0,
     "precision_pct": 100.0,
     "false_positive_rate_pct": 0.0,
-    "latency_p50_ms": 2.041,
-    "latency_p95_ms": 11.637,
-    "latency_p99_ms": 16.348
+    "latency_p50_ms": 1.075,
+    "latency_p95_ms": 12.775,
+    "latency_p99_ms": 18.478
   },
   "variant_breakdown": {
     "benign_clean_edit::append_helper": {

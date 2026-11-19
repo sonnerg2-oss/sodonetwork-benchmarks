@@ -1,7 +1,7 @@
 # SodoNetwork Independent Benchmark Report
 
-- **Timestamp (UTC):** `2026-11-17T22:28:29.063269+00:00`
-- **Package Version:** `sodonetwork==3.6.2`
+- **Timestamp (UTC):** `2026-11-19T20:42:03.140676+00:00`
+- **Package Version:** `sodonetwork==4.0.0`
 - **Environment:** Python `3.9.13` on `Windows 10` (`AMD64`)
 - **Independent Corpus:** `20` real Python Standard Library files (`total 220 AST-valid mutated test cases`)
 
@@ -14,8 +14,8 @@
 | Defects Blocked (Recall / TPR) | 0 | **180/180 (100.0%)** |
 | Benign Clean Edits (False Positives) | — | **0/40 (0.0% FPR)** |
 | Precision | — | **100.0%** |
-| Latency p50 | 57.206 ms | **2.041 ms** |
-| Latency p95 | 66.045 ms | **11.637 ms** |
+| Latency p50 | 56.951 ms | **1.075 ms** |
+| Latency p95 | 64.469 ms | **12.775 ms** |
 
 ## Per-Variant Breakdown (Including Real Detection Gaps)
 
@@ -35,6 +35,6 @@
 
 ## Reproducibility
 ```bash
-pip install sodonetwork==3.6.2
+pip install sodonetwork==4.0.0
 python benchmarks/run_benchmark.py
 ```

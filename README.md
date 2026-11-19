@@ -20,19 +20,29 @@ Most AI tooling claims rely on cherry-picked demos or self-referential metrics. 
 
 ---
 
-## Results Progression: `v3.6.1` Baseline → `v3.6.2` Hardened (`220` Identical AST-Valid Cases)
+## Results Progression: `v3.6.1` → `v3.6.2` → `v4.0.0` (`220` AST-Valid Stdlib Cases + `32` Multi-File TX Scenarios)
 
-> Full reproducible output (`v3.6.2`): [`results/BENCHMARK_REPORT.md`](results/BENCHMARK_REPORT.md) | Raw JSON: [`results/latest_results.json`](results/latest_results.json) | Case-by-case CSV: [`results/latest_cases.csv`](results/latest_cases.csv)
+> Full reproducible outputs (`v4.0.0`): [`results/BENCHMARK_REPORT.md`](results/BENCHMARK_REPORT.md) | [`results/TX_BENCHMARK_REPORT.md`](results/TX_BENCHMARK_REPORT.md) | Raw JSON: [`results/latest_results.json`](results/latest_results.json) & [`results/tx_results.json`](results/tx_results.json)
 
-| Metric | Control (`py_compile` alone) | `sodonetwork==3.6.1` (Baseline) | `sodonetwork==3.6.2` (Hardened) |
-| :--- | :---: | :---: | :---: |
-| AST-Valid Defect Cases Evaluated | 180 | 180 | 180 |
-| Defects Silently Passed | **180 / 180 (100.0%)** | 60 / 180 | **0 / 180** |
-| Defects Blocked (Recall / TPR) | 0 / 180 (0.0%) | 120 / 180 (66.67%) | **180 / 180 (100.0%)** |
-| Benign Edits Blocked (False Positives) | — | **0 / 40 (0.0% FPR)** | **0 / 40 (0.0% FPR)** |
-| Precision | — | 100.0% | **100.0%** |
-| Median Latency (`p50`) | 56.811 ms | 0.771 ms | **0.962 ms** |
-| Tail Latency (`p95`) | 70.171 ms | 3.630 ms | **4.505 ms** |
+### Suite 1 — Python Standard Library Mutation Guard (`220` AST-Valid Cases)
+
+| Metric | Control (`py_compile` alone) | `sodonetwork==3.6.1` | `sodonetwork==3.6.2` | `sodonetwork==4.0.0` |
+| :--- | :---: | :---: | :---: | :---: |
+| AST-Valid Defect Cases Evaluated | 180 | 180 | 180 | **180** |
+| Defects Silently Passed | **180 / 180 (100.0%)** | 60 / 180 | 0 / 180 | **0 / 180** |
+| Defects Blocked (Recall / TPR) | 0 / 180 (0.0%) | 120 / 180 (66.67%) | 180 / 180 (100.0%) | **180 / 180 (100.0%)** |
+| Benign Edits Blocked (FPR) | — | 0 / 40 (0.0%) | 0 / 40 (0.0%) | **0 / 40 (0.0%)** |
+| Precision | — | 100.0% | 100.0% | **100.0%** |
+
+### Suite 2 — `v4.0.0 TX` Update Architecture (`32` Multi-File & Polyglot Scenarios)
+
+Tests `sodonetwork==4.0.0` across 7 languages (`.py`, `.ts`, `.php`, `.kt`, `.go`, `.rs`, `.json`) without requiring local language compilers:
+- **`polyglot_hanging_code` (`7/7`):** Unclosed braces/brackets/comments caught across Kotlin, TypeScript, Go, Rust, PHP, JSON, and Python.
+- **`polyglot_clean_control` (`7/7`):** `0%` false positives on valid polyglot code (including Rust lifetimes `'a`, template literals, PHP `#` comments, strings containing `{}`).
+- **`cross_link_broken_blocked` (`6/6`):** Renaming/deleting an exported symbol in File A while File B still imports/calls it is blocked fail-closed across TypeScript, Python, PHP, Kotlin, Go, and Rust.
+- **`cross_link_coordinated_pass` (`6/6`):** Staging and updating File B in the same transaction resolves cross-link references (`0` broken) and passes cleanly.
+- **`atomic_rollback` (`3/3`):** Byte-exact SHA-256 restoration of modified files, orphan new file removal, and `--auto-rollback` on hanging-code commit failure.
+- **`scope_and_honesty` (`3/3`):** `core/data/**` and `infra/**` blocked fail-closed; unmatched queue markers honestly reported as `UNVERIFIED`.
 
 ### How Benchmark Evidence Drove `v3.6.2`
 Running the `v3.6.1` suite uncovered **3 real detection blind spots** when LLM truncation did not shrink file size by >35%:
@@ -49,8 +59,9 @@ In `v3.6.2`, `verify_code_mutation_integrity` was upgraded to strip quoted strin
 ```bash
 git clone https://github.com/sonnerg2-oss/sodonetwork-benchmarks.git
 cd sodonetwork-benchmarks
-pip install sodonetwork==3.6.2
+pip install sodonetwork==4.0.0
 python benchmarks/run_benchmark.py
+python benchmarks/run_tx_benchmark.py
 ```
 
 Raw outputs will be written to `results/latest_results.json`, `results/latest_cases.csv`, and `results/BENCHMARK_REPORT.md`.

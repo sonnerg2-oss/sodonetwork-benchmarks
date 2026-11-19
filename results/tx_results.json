@@ -1,0 +1,269 @@
+{
+  "timestamp_utc": "2026-11-19T20:41:16.398683+00:00",
+  "sodonetwork_version": "4.0.0",
+  "environment": {
+    "python_version": "3.9.13",
+    "os": "Windows 10",
+    "machine": "AMD64"
+  },
+  "metrics": {
+    "total_scenarios": 32,
+    "passed": 32,
+    "failed": 0,
+    "pass_rate_pct": 100.0,
+    "latency_p50_ms": 1.014,
+    "latency_p95_ms": 108.184
+  },
+  "categories": {
+    "polyglot_hanging_code": {
+      "total": 7,
+      "passed": 7
+    },
+    "polyglot_clean_control": {
+      "total": 7,
+      "passed": 7
+    },
+    "cross_link_broken_blocked": {
+      "total": 6,
+      "passed": 6
+    },
+    "cross_link_coordinated_pass": {
+      "total": 6,
+      "passed": 6
+    },
+    "atomic_rollback": {
+      "total": 3,
+      "passed": 3
+    },
+    "scope_and_honesty": {
+      "total": 3,
+      "passed": 3
+    }
+  },
+  "records": [
+    {
+      "category": "polyglot_hanging_code",
+      "case": "broken.kt",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 0.191
+    },
+    {
+      "category": "polyglot_hanging_code",
+      "case": "broken.ts",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 0.184
+    },
+    {
+      "category": "polyglot_hanging_code",
+      "case": "broken.go",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 0.172
+    },
+    {
+      "category": "polyglot_hanging_code",
+      "case": "broken.rs",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 0.18
+    },
+    {
+      "category": "polyglot_hanging_code",
+      "case": "broken.php",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 0.179
+    },
+    {
+      "category": "polyglot_hanging_code",
+      "case": "broken.json",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 0.73
+    },
+    {
+      "category": "polyglot_hanging_code",
+      "case": "broken.py",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 0.947
+    },
+    {
+      "category": "polyglot_clean_control",
+      "case": "clean.kt",
+      "expected": "PASS",
+      "passed_assertion": true,
+      "latency_ms": 0.687
+    },
+    {
+      "category": "polyglot_clean_control",
+      "case": "clean.ts",
+      "expected": "PASS",
+      "passed_assertion": true,
+      "latency_ms": 0.488
+    },
+    {
+      "category": "polyglot_clean_control",
+      "case": "clean.go",
+      "expected": "PASS",
+      "passed_assertion": true,
+      "latency_ms": 0.451
+    },
+    {
+      "category": "polyglot_clean_control",
+      "case": "clean.rs",
+      "expected": "PASS",
+      "passed_assertion": true,
+      "latency_ms": 0.777
+    },
+    {
+      "category": "polyglot_clean_control",
+      "case": "clean.php",
+      "expected": "PASS",
+      "passed_assertion": true,
+      "latency_ms": 0.745
+    },
+    {
+      "category": "polyglot_clean_control",
+      "case": "clean.json",
+      "expected": "PASS",
+      "passed_assertion": true,
+      "latency_ms": 0.514
+    },
+    {
+      "category": "polyglot_clean_control",
+      "case": "clean.py",
+      "expected": "PASS",
+      "passed_assertion": true,
+      "latency_ms": 0.637
+    },
+    {
+      "category": "cross_link_broken_blocked",
+      "case": "typescript:x_auth.ts->x_checkout.ts",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 7.064
+    },
+    {
+      "category": "cross_link_coordinated_pass",
+      "case": "typescript:x_auth.ts+x_checkout.ts",
+      "expected": "PASS",
+      "passed_assertion": true,
+      "latency_ms": 5.459
+    },
+    {
+      "category": "cross_link_broken_blocked",
+      "case": "python:x_billing.py->x_api.py",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 60.215
+    },
+    {
+      "category": "cross_link_coordinated_pass",
+      "case": "python:x_billing.py+x_api.py",
+      "expected": "PASS",
+      "passed_assertion": true,
+      "latency_ms": 108.184
+    },
+    {
+      "category": "cross_link_broken_blocked",
+      "case": "php:x_ledger.php->x_handler.php",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 74.319
+    },
+    {
+      "category": "cross_link_coordinated_pass",
+      "case": "php:x_ledger.php+x_handler.php",
+      "expected": "PASS",
+      "passed_assertion": true,
+      "latency_ms": 132.174
+    },
+    {
+      "category": "cross_link_broken_blocked",
+      "case": "kotlin:XTokenGuard.kt->XCheckoutScreen.kt",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 6.034
+    },
+    {
+      "category": "cross_link_coordinated_pass",
+      "case": "kotlin:XTokenGuard.kt+XCheckoutScreen.kt",
+      "expected": "PASS",
+      "passed_assertion": true,
+      "latency_ms": 6.74
+    },
+    {
+      "category": "cross_link_broken_blocked",
+      "case": "go:x_signer.go->x_router.go",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 6.7
+    },
+    {
+      "category": "cross_link_coordinated_pass",
+      "case": "go:x_signer.go+x_router.go",
+      "expected": "PASS",
+      "passed_assertion": true,
+      "latency_ms": 6.894
+    },
+    {
+      "category": "cross_link_broken_blocked",
+      "case": "rust:x_vault.rs->x_worker.rs",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 6.651
+    },
+    {
+      "category": "cross_link_coordinated_pass",
+      "case": "rust:x_vault.rs+x_worker.rs",
+      "expected": "PASS",
+      "passed_assertion": true,
+      "latency_ms": 7.174
+    },
+    {
+      "category": "atomic_rollback",
+      "case": "multi_file_sha256_restore",
+      "expected": "RESTORE_EXACT",
+      "passed_assertion": true,
+      "latency_ms": 2.989
+    },
+    {
+      "category": "atomic_rollback",
+      "case": "orphan_new_file_cleanup",
+      "expected": "DELETED",
+      "passed_assertion": true,
+      "latency_ms": 2.989
+    },
+    {
+      "category": "atomic_rollback",
+      "case": "commit_auto_rollback_on_hanging_code",
+      "expected": "AUTO_ROLLED_BACK",
+      "passed_assertion": true,
+      "latency_ms": 7.699
+    },
+    {
+      "category": "scope_and_honesty",
+      "case": "forbidden_scope:core/data/secret.py",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 1.014
+    },
+    {
+      "category": "scope_and_honesty",
+      "case": "forbidden_scope:infra/deploy.yml",
+      "expected": "BLOCK",
+      "passed_assertion": true,
+      "latency_ms": 0.853
+    },
+    {
+      "category": "scope_and_honesty",
+      "case": "honest_queue_unverified_no_fake_ast",
+      "expected": "UNVERIFIED",
+      "passed_assertion": true,
+      "latency_ms": 0.501
+    }
+  ]
+}
